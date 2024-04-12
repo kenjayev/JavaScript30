@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Clock</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html {
+                font-family: sans-serif;
+            }
+            body {
+                background: #018ded
+                    url(https://unsplash.it/1500/1000?image=881&blur=5);
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .clock {
+                width: 300px;
+                height: 300px;
+                border: 8px solid white;
+                border-radius: 50%;
+                box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1),
+                    inset 0 0 0 3px #efefef, inset 0 0 10px black,
+                    0 0 10px rgba(0, 0, 0, 0.2);
+            }
+            .inside-clock {
+                widows: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+            .central-point {
+                width: 10px;
+                height: 10px;
+                background-color: white;
+                border-radius: 50%;
+                position: absolute;
+                z-index: 100;
+            }
+            .stick {
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                transform: rotate(0deg);
+                padding-bottom: 5px;
+            }
+
+            .stick div {
+                border-radius: 2px;
+                width: 6px;
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+            .stick .secunde-stick {
+                height: 130px;
+                background-color: red;
+            }
+            .stick .minute-stick {
+                height: 115px;
+                background-color: darkblue;
+            }
+            .stick .houre-stick {
+                height: 100px;
+                background-color: whitesmoke;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="clock">
+            <div class="inside-clock">
+                <div class="central-point"></div>
+
+                <div class="stick secunde">
+                    <div class="secunde-stick"></div>
+                </div>
+
+                <div class="stick minute">
+                    <div class="minute-stick"></div>
+                </div>
+
+                <div class="stick hour">
+                    <div class="houre-stick"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const secondHand = document.querySelector(".secunde");
+            const minuteHand = document.querySelector(".minute");
+            const hourHand = document.querySelector(".hour");
+
+            function run() {
+                const data = new Date();
+                const second = data.getSeconds();
+                const minute = data.getMinutes();
+                const hour = data.getHours();
+
+                secondHand.style.transform = `rotate(${6 * second}deg)`;
+                minuteHand.style = `transform: rotate(${
+                    6 * minute + (6 / 60) * second
+                }deg)`;
+                hourHand.style = `transform: rotate(${
+                    (360 / 12) * (hour % 12) + (30 / 60) * minute
+                }deg);`;
+            }
+            setInterval(run, 1000);
+            run();
+        </script>
+    </body>
+</html>
