@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-family: sans-serif;
+}
+body {
+    background: #018ded url(https://unsplash.it/1500/1000?image=881&blur=5);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.clock {
+    width: 300px;
+    height: 300px;
+    border: 8px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
+        inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.inside-clock {
+    widows: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.central-point {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+}
+.stick {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transform: rotate(0deg);
+    padding-bottom: 5px;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.stick div {
+    border-radius: 2px;
+    width: 6px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.stick .secunde-stick {
+    height: 130px;
+    background-color: red;
+}
+.stick .minute-stick {
+    height: 115px;
+    background-color: darkblue;
+}
+.stick .houre-stick {
+    height: 100px;
+    background-color: whitesmoke;
+}
