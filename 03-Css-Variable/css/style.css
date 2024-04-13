@@ -1,6 +1,6 @@
 :root {
-    --spacing: 20px;
-    --range: 3px;
+    --spacing: 10px;
+    --range: 2px;
     --base: #ffc600;
 }
 body {
@@ -22,4 +22,6 @@ h1 span {
 img {
     border: var(--spacing) solid var(--base);
     filter: blur(var(--range));
+    max-width: 90%;
+    box-sizing: border-box;
 }
