@@ -1,0 +1,25 @@
+:root {
+    --spacing: 20px;
+    --range: 3px;
+    --base: #ffc600;
+}
+body {
+    background-color: #193549;
+    text-align: center;
+    font-family: sans-serif;
+    color: #fff;
+}
+h1 {
+    font-size: 55px;
+}
+h1 span {
+    color: #ffc600;
+}
+.controls {
+    margin: 40px 0;
+    font-size: 30px;
+}
+img {
+    border: var(--spacing) solid var(--base);
+    filter: blur(var(--range));
+}

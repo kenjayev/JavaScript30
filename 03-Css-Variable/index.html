@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Css Variable</title>
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <body>
+        <h1>Update CSS Variables with <span>JS</span></h1>
+        <div class="controls">
+            <label for="spacing">Spacing:</label>
+            <input
+                type="range"
+                name="spacing"
+                min="8"
+                max="80"
+                value="20"
+                id="spacing"
+                data-sizing="px"
+            />
+
+            <label for="blur">Blur:</label>
+            <input
+                type="range"
+                name="range"
+                min="0"
+                max="15"
+                value="3"
+                id="blur"
+                data-sizing="px"
+            />
+
+            <label for="color">Color:</label>
+            <input type="color" name="base" value="#ffc600" id="color" />
+        </div>
+        <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" alt="" />
+        <script src="./js/main.js"></script>
+    </body>
+</html>
