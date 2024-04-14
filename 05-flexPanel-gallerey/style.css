@@ -77,3 +77,26 @@ body {
 .item.open p:last-child {
     transform: translateY(0);
 }
+
+@media only screen and (max-width: 600px) {
+    .item:nth-child(3),
+    .item:last-child {
+        display: none;
+    }
+    .item {
+        font-size: 35px;
+    }
+    .item.open {
+        flex: 3;
+        font-size: 55px;
+    }
+    .item.open p:first-child {
+        align-items: end;
+    }
+    .item.open p:nth-child(2) {
+        flex: 1.7 0 auto;
+    }
+    .item.open p:last-child {
+        align-items: start;
+    }
+}
