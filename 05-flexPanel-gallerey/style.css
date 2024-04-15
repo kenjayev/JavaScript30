@@ -68,13 +68,13 @@ body {
     flex: 5;
     font-size: 85px;
 }
-.item.open p:first-child {
+.item.open-active p:first-child {
     transform: translateY(0);
 }
 .item.open p:nth-child(2) {
     transform: scale(1.5);
 }
-.item.open p:last-child {
+.item.open-active p:last-child {
     transform: translateY(0);
 }
 
