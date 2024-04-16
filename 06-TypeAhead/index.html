@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Type Ahead</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <form class="search-form">
+            <input
+                type="text"
+                placeholder="City or State"
+                class="search-input"
+            />
+            <ul class="suggestions">
+                <li>Filter For A City</li>
+                <li>Or A State</li>
+            </ul>
+        </form>
+        <script>
+            const endpoint =
+                "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+
+            function request(url, callback) {
+                const request = new XMLHttpRequest();
+
+                request.addEventListener("readystatechange", (e) => {
+                    if (request.status === 200 && request.readyState == 4) {
+                        const data = JSON.parse(request.response);
+                        callback(data, undefined);
+                    } else if (request.readyState === 4) {
+                        callback(undefined, "You have a wrong error");
+                    }
+                });
+                request.open("GET", url);
+                request.send();
+            }
+
+            const cities = [];
+            request(endpoint, (data, error) => {
+                if (data) {
+                    cities.push(...data);
+                }
+                if (error) console.log(error);
+            });
+
+            const searchInput = document.querySelector(".search-input");
+            const ul = document.querySelector(".suggestions");
+
+            function createHtmlLi() {
+                const regex = new RegExp(searchInput.value, "gi");
+                const searchedCities = cities.filter((item) => {
+                    let { city, state } = item;
+                    return city.match(regex) || state.match(regex);
+                });
+                const html = searchedCities
+                    .map((place) => {
+                        const city = place.city.replace(
+                            regex,
+                            `<span class="hl">${searchInput.value}</span>`
+                        );
+                        const state = place.state.replace(
+                            regex,
+                            `<span class="hl">${searchInput.value}</span>`
+                        );
+                        return `<li><span>${city}, ${state}</span> <span>${place.population}</span> </li>`;
+                    })
+                    .join("");
+                ul.innerHTML = html;
+            }
+
+            searchInput.addEventListener("input", createHtmlLi);
+        </script>
+    </body>
+</html>
