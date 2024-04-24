@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <title>Document</title>
     <link rel="icon" href="https://fav.farm/🔥" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div class="site-wrap">
       <h1>Slide in on Scroll</h1>
-
       <p>
         Consectetur adipisicing elit. Tempore tempora rerum, est autem
         cupiditate, corporis a qui libero ipsum delectus quidem dolor at nulla,
@@ -221,80 +221,6 @@
         facere ducimus accusantium eos veritatis neque.
       </p>
     </div>
-
-    <script>
-      const slidesIMG = document.querySelectorAll(".slide-in");
-      window.addEventListener("scroll", function (e) {
-        slidesIMG.forEach((img) => {
-          const clientTop = img.getBoundingClientRect().top;
-          const clientBootom = img.getBoundingClientRect().bottom;
-          const between = img.height / 3;
-          const innerViev = this.innerHeight;
-
-          if (clientTop < innerViev - between && clientBootom > between) {
-            img.classList.add("active");
-          } else if (clientTop > innerViev || clientBootom < 0) {
-            img.classList.remove("active");
-          }
-        });
-        //   console.log(slidesIMG[0].getBoundingClientRect());
-      });
-    </script>
-    <style>
-      html {
-        box-sizing: border-box;
-        background: #ffc600;
-        font-family: "helvetica neue";
-        font-size: 20px;
-        font-weight: 200;
-      }
-
-      body {
-        margin: 0;
-      }
-
-      *,
-      *:before,
-      *:after {
-        box-sizing: inherit;
-      }
-
-      h1 {
-        margin-top: 0;
-      }
-
-      .site-wrap {
-        max-width: 700px;
-        margin: 100px auto;
-        background: white;
-        padding: 40px;
-        text-align: justify;
-      }
-
-      .slide-in {
-        opacity: 0;
-        transition: all 0.5s;
-      }
-      .align-left {
-        float: left;
-        margin-right: 20px;
-      }
-      .align-left.slide-in {
-        transform: translateX(-30%) scale(0.95);
-      }
-
-      .align-right {
-        float: right;
-        margin-left: 20px;
-      }
-      .align-right.slide-in {
-        transform: translateX(30%) scale(0.95);
-      }
-
-      .slide-in.active {
-        opacity: 1;
-        transform: translateX(0%) scale(1);
-      }
-    </style>
+    <script src="./main.js"></script>
   </body>
 </html>
