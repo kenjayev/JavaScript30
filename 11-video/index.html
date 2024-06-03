@@ -5,72 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(
-          135deg,
-          #7c1599 0%,
-          #921099 48%,
-          #7e4ae8 100%
-        );
-        height: 100vh;
-      }
-      .player {
-        position: relative;
-        overflow: hidden;
-      }
-      .player:hover .controls {
-        transform: translateY(0);
-      }
-      .controls {
-        z-index: 1;
-        width: 100%;
-        height: 50px;
-        background-color: rgba(0, 0, 0, 0.01);
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        transform: translateY(100%) translateY(-6px);
-        transition: all 0.2s;
-      }
-      .progress {
-        width: 100%;
-        height: 12px;
-        background-color: rgba(0, 0, 0, 0.7);
-      }
-      .progress .progress__fill {
-        width: 50%;
-        height: 12px;
-        background-color: orangered;
-      }
-      #pause_start {
-        border: none;
-        outline: none;
-        background: none;
-        width: 30px;
-        height: 30px;
-      }
-      #pause_start.start::before {
-        cursor: pointer;
-        content: "▶";
-        font-size: 22px;
-        color: #fff;
-      }
-      #pause_start.pause::before {
-        cursor: pointer;
-        content: "⏸";
-        font-size: 22px;
-        color: #fff;
-      }
-    </style>
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div class="player">
@@ -78,7 +13,27 @@
         <div class="progress">
           <div class="progress__fill"></div>
         </div>
-        <button id="pause_start" class="start"></button>
+        <div class="bottom_control">
+          <button id="pause_start" class="start"></button>
+          <input
+            type="range"
+            name="value"
+            id="valueChange"
+            min="0"
+            max="10"
+            value="10"
+          />
+          <input
+            type="range"
+            name="speed"
+            id="speedChange"
+            min="5"
+            max="25"
+            value="10"
+          />
+          <button id="minusTime"><< 10</button>
+          <button id="addTime">25s >></button>
+        </div>
       </div>
       <video class="video_player" src="./652333414.mp4"></video>
     </div>
@@ -87,6 +42,37 @@
       const video = document.querySelector(".video_player");
       const progress__fill = document.querySelector(".progress__fill");
 
+      /* Progress panel. how duration and current times */
+      video.addEventListener("timeupdate", () => {
+        const progress_percent = (video.currentTime / video.duration) * 100;
+        progress__fill.style.width = `${progress_percent}%`;
+      });
+
+      /*  Work with volume. Lower and raise the video volume. */
+      const valueChange = document.querySelector("#valueChange");
+      valueChange.addEventListener("input", () => {
+        video.volume = valueChange.value / 10;
+      });
+      /* change video SPEED. Fast and slow the video */
+      const speedChange = document.querySelector("#speedChange");
+      speedChange.addEventListener("input", () => {
+        video.playbackRate = speedChange.value / 10;
+      });
+
+      /* fast rewind the video */
+      const minusTime = document.querySelector("#minusTime");
+      minusTime.addEventListener("click", () => {
+        video.currentTime -= 10;
+      });
+      /* fast forward the video */
+      const addTime = document.querySelector("#addTime");
+      addTime.addEventListener("click", () => {
+        video.currentTime += 25;
+      });
+
+      /* pause and start video player */
+      pause__start.addEventListener("click", pause__start__function);
+      video.addEventListener("click", pause__start__function);
       function pause__start__function() {
         if (pause__start.classList.contains("start")) video.play();
         if (pause__start.classList.contains("pause")) video.pause();
@@ -94,7 +80,6 @@
         pause__start.classList.toggle("start");
         pause__start.classList.toggle("pause");
       }
-      pause__start.addEventListener("click", pause__start__function);
     </script>
   </body>
 </html>

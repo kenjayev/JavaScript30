@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #7c1599 0%, #921099 48%, #7e4ae8 100%);
+  height: 100vh;
+}
+.player {
+  position: relative;
+  overflow: hidden;
+}
+.player:hover .controls {
+  transform: translateY(0);
+}
+.controls {
+  z-index: 1;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.01);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%) translateY(-6px);
+  transition: all 0.5s;
+}
+.progress {
+  width: 100%;
+  height: 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.progress .progress__fill {
+  width: 50%;
+  height: 12px;
+  background-color: orangered;
+}
+.bottom_control {
+  padding: 5px;
+}
+button {
+  border: none;
+  outline: none;
+  background: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  cursor: pointer;
+}
+#pause_Start {
+  width: 30px;
+  height: 30px;
+}
+#pause_start.start::before {
+  cursor: pointer;
+  content: "▶";
+  font-size: 22px;
+  color: #fff;
+}
+#pause_start.pause::before {
+  cursor: pointer;
+  content: "⏸";
+  font-size: 22px;
+  color: #fff;
+}
+#addTime,
+#minusTime {
+  color: yellow;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px;
+}
