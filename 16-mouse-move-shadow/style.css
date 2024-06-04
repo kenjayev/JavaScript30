@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+.hero h1 {
+  font-size: 100px;
+  font-weight: bold;
+  text-shadow: rgba(255, 0, 255, 0.7) 10px -10px 0px,
+    rgba(0, 255, 255, 0.7) 10px 10px 0px, rgba(0, 255, 0, 0.7) -10px -10px 0px,
+    rgba(0, 0, 255, 0.7) -10px 10px 0px;
+}
