@@ -14,72 +14,34 @@
           <div class="progress__fill"></div>
         </div>
         <div class="bottom_control">
-          <button id="pause_start" class="start"></button>
+          <button id="pause_start" class="start">►</button>
           <input
             type="range"
-            name="value"
+            name="volume"
             id="valueChange"
             min="0"
-            max="10"
-            value="10"
+            max="1"
+            value="0.5"
+            step="0.05"
           />
           <input
             type="range"
-            name="speed"
+            name="playbackRate"
             id="speedChange"
-            min="5"
-            max="25"
-            value="10"
+            min="0.4"
+            max="2.6"
+            value="1"
+            step="0.2"
           />
-          <button id="minusTime"><< 10</button>
-          <button id="addTime">25s >></button>
+          <button data-skip="-10" id="minusTime">« 10s</button>
+          <button data-skip="25" id="addTime">25s »</button>
         </div>
       </div>
       <video class="video_player" src="./652333414.mp4"></video>
     </div>
-    <script>
-      const pause__start = document.querySelector("#pause_start");
-      const video = document.querySelector(".video_player");
-      const progress__fill = document.querySelector(".progress__fill");
-
-      /* Progress panel. how duration and current times */
-      video.addEventListener("timeupdate", () => {
-        const progress_percent = (video.currentTime / video.duration) * 100;
-        progress__fill.style.width = `${progress_percent}%`;
-      });
-
-      /*  Work with volume. Lower and raise the video volume. */
-      const valueChange = document.querySelector("#valueChange");
-      valueChange.addEventListener("input", () => {
-        video.volume = valueChange.value / 10;
-      });
-      /* change video SPEED. Fast and slow the video */
-      const speedChange = document.querySelector("#speedChange");
-      speedChange.addEventListener("input", () => {
-        video.playbackRate = speedChange.value / 10;
-      });
-
-      /* fast rewind the video */
-      const minusTime = document.querySelector("#minusTime");
-      minusTime.addEventListener("click", () => {
-        video.currentTime -= 10;
-      });
-      /* fast forward the video */
-      const addTime = document.querySelector("#addTime");
-      addTime.addEventListener("click", () => {
-        video.currentTime += 25;
-      });
-
-      /* pause and start video player */
-      pause__start.addEventListener("click", pause__start__function);
-      video.addEventListener("click", pause__start__function);
-      function pause__start__function() {
-        if (pause__start.classList.contains("start")) video.play();
-        if (pause__start.classList.contains("pause")) video.pause();
-
-        pause__start.classList.toggle("start");
-        pause__start.classList.toggle("pause");
-      }
-    </script>
+    <!-- Vidyo vaqtlarini ko'rsatib qo'yish.
+       vidyo o'tganda qancha o'tganini ko'rsatish. input range da tepasida tab bar
+        qilib qiymatini ko'rsatib ketish. probel bilan boshlash -->
+    <script src="./js/main.js"></script>
   </body>
 </html>
