@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        padding: 20px;
+        width: 100%;
+        height: 100vh;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        border: 10px solid #ffc600;
+      }
+      #video {
+        display: none;
+      }
+      #canvas {
+        max-width: 940px;
+        width: 100%;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="controls">
+        <button id="takePhoto">Take Photo</button>
+      </div>
+      <video id="video" autoplay></video>
+      <canvas id="canvas" width="500" height="375"></canvas>
+      <audio src="./snap.mp3" hidden id="snap"></audio>
+    </div>
+    <script src="./main.js"></script>
+    <!-- rasm tushirganda bitta o'chib yonish. hamma rasmni bittada yuklab olish. 
+      yuklab olish tugmasini qo'shish. galireya qilib saqlab qo'yish. local storagedan foydalanish
+      nastroyka qismini qo'shish. ozgina timer bilan ishlash. filterni o'chirish
+    -->
+  </body>
+</html>
