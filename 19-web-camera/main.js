@@ -13,8 +13,11 @@ navigator.mediaDevices
   });
 video.addEventListener("play", () => {
   var draw = function () {
-    const width = canvas.width;
-    const height = canvas.height;
+    const width = video.videoWidth;
+    const height = video.videoHeight;
+    canvas.width = width;
+    canvas.height = height;
+
     ctx.drawImage(video, 0, 0, width, height);
     let pixels = ctx.getImageData(0, 0, width, height);
     pixels = filter(pixels);
