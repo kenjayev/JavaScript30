@@ -13,15 +13,17 @@ navigator.mediaDevices
   });
 video.addEventListener("play", () => {
   var draw = function () {
-    const width = video.videoWidth;
-    const height = video.videoHeight;
-    canvas.width = width;
-    canvas.height = height;
+    if (!video.paused && !video.ended && video.videoWidth != 0) {
+      const width = video.videoWidth;
+      const height = video.videoHeight;
+      canvas.width = width;
+      canvas.height = height;
 
-    ctx.drawImage(video, 0, 0, width, height);
-    let pixels = ctx.getImageData(0, 0, width, height);
-    pixels = filter(pixels);
-    ctx.putImageData(pixels, 0, 0);
+      ctx.drawImage(video, 0, 0, width, height);
+      let pixels = ctx.getImageData(0, 0, width, height);
+      pixels = filter(pixels);
+      ctx.putImageData(pixels, 0, 0);
+    }
     requestAnimationFrame(draw);
   };
   draw();
